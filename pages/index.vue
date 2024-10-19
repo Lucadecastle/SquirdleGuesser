@@ -32,14 +32,14 @@ function selectPokemon(pokemon: any) {
       class="bg-black/20 rounded-lg p-4 flex flex-col gap-4"
     >
       <input type="text" v-model="filterText" />
-      <div class="h-[10vh] overflow-auto bg-white/10 rounded-lg p-4">
+      <div class="h-[30vh] overflow-auto bg-white/10 rounded-lg p-4">
         <div
           v-for="pokemon in filteredPokedex"
           class="flex flex-row gap-2 hover:bg-white/5 cursor-pointer px-2 rounded-lg"
           :class="{
             '!bg-[#003B3B]': selectedPokemon?.name === pokemon.name,
           }"
-          @click="() => selectPokemon(pokemon)"
+          @pointerdown="() => selectPokemon(pokemon)"
         >
           <span v-if="selectedPokemon?.name === pokemon.name">✓</span>
           <span>{{ pokemon.name }}</span>
