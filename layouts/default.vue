@@ -5,5 +5,7 @@ useHead({
 </script>
 
 <template>
-  <slot></slot>
+  <div class="p-4">
+    <slot></slot>
+  </div>
 </template>
