@@ -4,6 +4,7 @@ const { addNewPlayer } = useSquirdleQueries();
 
 const filterText = ref("");
 const newPlayerName = ref("");
+const selectedPokemon = ref();
 
 const filteredPokedex = computed(() => {
   return pokedex.filter((pokemon) =>
@@ -17,6 +18,10 @@ function addPlayer() {
   addNewPlayer(newPlayerName.value);
   newPlayerName.value = "";
 }
+
+function selectPokemon(pokemon: any) {
+  selectedPokemon.value = pokemon;
+}
 </script>
 
 <template>
@@ -27,9 +32,17 @@ function addPlayer() {
       class="bg-black/20 rounded-lg p-4 flex flex-col gap-4"
     >
       <input type="text" v-model="filterText" />
-      <div class="max-h-[10vh] overflow-auto bg-white/10 rounded-lg p-4">
-        <div v-for="pokemon in filteredPokedex">
-          {{ pokemon.name }}
+      <div class="h-[10vh] overflow-auto bg-white/10 rounded-lg p-4">
+        <div
+          v-for="pokemon in filteredPokedex"
+          class="flex flex-row gap-2 hover:bg-white/5 cursor-pointer px-2 rounded-lg"
+          :class="{
+            '!bg-[#003B3B]': selectedPokemon.name === pokemon.name,
+          }"
+          @click="() => selectPokemon(pokemon)"
+        >
+          <span v-if="selectedPokemon.name === pokemon.name">✓</span>
+          <span>{{ pokemon.name }}</span>
         </div>
       </div>
     </div>
