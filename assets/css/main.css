@@ -8,7 +8,9 @@ body {
 }
 
 input,
-button {
+button,
+select,
+textarea {
   border-radius: 8px;
   background-color: white;
   color: black;
