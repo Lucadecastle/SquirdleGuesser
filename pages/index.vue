@@ -37,11 +37,11 @@ function selectPokemon(pokemon: any) {
           v-for="pokemon in filteredPokedex"
           class="flex flex-row gap-2 hover:bg-white/5 cursor-pointer px-2 rounded-lg"
           :class="{
-            '!bg-[#003B3B]': selectedPokemon.name === pokemon.name,
+            '!bg-[#003B3B]': selectedPokemon?.name === pokemon.name,
           }"
           @click="() => selectPokemon(pokemon)"
         >
-          <span v-if="selectedPokemon.name === pokemon.name">✓</span>
+          <span v-if="selectedPokemon?.name === pokemon.name">✓</span>
           <span>{{ pokemon.name }}</span>
         </div>
       </div>
