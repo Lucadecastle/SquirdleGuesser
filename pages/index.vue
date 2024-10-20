@@ -66,6 +66,8 @@ function resetPlayer() {
     minWeight: 0.0,
     maxWeight: 99999.99,
   });
+  
+  location.reload();
 }
 
 function selectPokemon(pokemon: any) {
@@ -166,6 +168,7 @@ function addSquirdle() {
 
   updatePlayer(targetPlayer);
   newSquirdleResult.value = "";
+  selectedPokemon.value = null;
 }
 </script>
 
