@@ -26,5 +26,5 @@ export enum POKEMON_TYPE {
   NORMAL = "Normal",
   ELECTRIC = "Electric",
   POISON = "Poison",
-  NONE = "",
+  NONE = "None",
 }
