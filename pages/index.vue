@@ -107,14 +107,14 @@ function addSquirdle() {
 
   if (
     newHints[3] === greenSquare &&
-    !targetPlayer.sureTypes.find(
+    !targetPlayer.sureTypes.findIndex(
       (type) => type === selectedPokemon.value!.type1
     )
   ) {
     targetPlayer.sureTypes.push(selectedPokemon.value!.type1);
   } else if (
     newHints[3] === yellowSquare &&
-    !targetPlayer.sureTypes.find(
+    !targetPlayer.sureTypes.findIndex(
       (type) => type === selectedPokemon.value!.type2
     )
   ) {
