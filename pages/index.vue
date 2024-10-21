@@ -29,10 +29,16 @@ const possiblePokemons = computed(() => {
 
   return pokedex.filter(
     (pokemon) =>
-      pokemon.height >= selectedPlayer.value.minHeight &&
-      pokemon.height <= selectedPlayer.value.maxHeight &&
-      pokemon.weight >= selectedPlayer.value.minWeight &&
-      pokemon.weight <= selectedPlayer.value.maxWeight &&
+      (selectedPlayer.value.minHeight === selectedPlayer.value.maxHeight
+       ? pokemon.height === selectedPlayer.value.minHeight
+       : (pokemon.height > selectedPlayer.value.minHeight &&
+          pokemon.height < selectedPlayer.value.maxHeight)
+      ) &&
+      (selectedPlayer.value.minWeight === selectedPlayer.value.maxWeight
+       ? pokemon.weight === selectedPlayer.value.minWeight
+       : (pokemon.weight > selectedPlayer.value.minWeight &&
+          pokemon.weight < selectedPlayer.value.maxWeight)
+      ) &&
       selectedPlayer.value.possibleTypes.includes(pokemon.type1) &&
       selectedPlayer.value.possibleTypes.includes(pokemon.type2) &&
       (selectedPlayer.value.sureTypes.length === 0 ||
@@ -44,7 +50,10 @@ const possiblePokemons = computed(() => {
           (JSON.stringify([pokemon.type1, pokemon.type2]) ===
             JSON.stringify(selectedPlayer.value.sureTypes) ||
             JSON.stringify([pokemon.type2, pokemon.type1]) ===
-              JSON.stringify(selectedPlayer.value.sureTypes))))
+              JSON.stringify(selectedPlayer.value.sureTypes)
+          )
+        )
+      )
   );
 });
 
@@ -169,6 +178,7 @@ function addSquirdle() {
   updatePlayer(targetPlayer);
   newSquirdleResult.value = "";
   selectedPokemon.value = null;
+  filterText.value = "";
 }
 </script>
 
